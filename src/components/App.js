@@ -10,6 +10,7 @@ import "./App.scss";
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [input, setInput] = useState("");
+  const [gender, setGender] = useState("");
 
   useEffect(() => {
     //hook para empezar ciclo de vida, al empezar la aplicacion web
@@ -20,6 +21,9 @@ const App = () => {
   const filterCharacters = characters
     .filter((character) => {
       return character.name.toLowerCase().includes(input.toLowerCase());
+    })
+    .filter((character) => {
+      return character.gender === gender;
     })
     .sort((a, b) => {
       if (a.name > b.name) {
@@ -33,7 +37,12 @@ const App = () => {
     });
   //alamcena la info en setInput del valor filtrado
   const handleFilter = (inputChange) => {
-    setInput(inputChange.value);
+    console.log(inputChange);
+    if (inputChange.id === "name") {
+      setInput(inputChange.value);
+    } else {
+      setGender(inputChange.value);
+    }
   };
   //parseInt pq el id es un string y hay que pasarlo a numero
   // al recargar la pagina no encuentra characters, pq el array esta vacio y tarda 120ms en llamar al fetch

@@ -16,6 +16,7 @@ const getCharactersFromApi = () => {
           image: character.image,
           origin: character.origin.name,
           episodes: character.episode.length, //longitud del array
+          gender: character.gender,
         };
       });
     });
